@@ -1,5 +1,5 @@
 const express = require("express");
-const routermy = require("./routes/articles");
+const articleRouter = require("./routes/articles");
 const app = express();
 
 app.set("view engine", "ejs");
@@ -8,10 +8,17 @@ app.set("view engine", "ejs");
 //   res.send("Hello World");
 // });
 
-app.use("/", routermy);
+app.use("/articles", articleRouter);
 
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
+app.get("/", (req, res) => {
+  const articles = [
+    {
+      title: "Test Articles",
+      createAt: Date.now(),
+      description: "Test Description",
+    },
+  ];
+  res.render("index", { articles: articles });
+});
 
 app.listen(5000);
