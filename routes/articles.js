@@ -9,6 +9,7 @@ router.get("/new", function (req, res) {
 
 router.get("/edit/:id", async function (req, res) {
   const article = await Article.findById(req.params.id);
+  console.log(article.title);
   res.render("articles/edit", { article: article });
 });
 
